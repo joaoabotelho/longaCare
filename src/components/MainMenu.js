@@ -4,10 +4,10 @@ import  { PatientBasicCard } from './common';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-class MainMenu extends Component { 
+class MainMenu extends Component {
   list = { patients: [] };
 
-  renderList(){    
+  renderList(){
       fetch('https://floating-escarpment-15714.herokuapp.com/pacients', {
         method: 'GET',
         headers: {
@@ -23,7 +23,7 @@ class MainMenu extends Component {
           console.log("Success!!");
           response.json().then(data => {
             console.log(data.data.pacients);
-            this.list.patients = data.data.pacients; 
+            this.list.patients = data.data.pacients;
             this.forceUpdate()
           });
         }
@@ -36,7 +36,7 @@ class MainMenu extends Component {
       return this.list.patients.map(patient => <PatientBasicCard name={patient.name} age={patient.age} image={require('../assets/images/tiago.jpeg')} />);
     }
   }
-    
+
   render() {
     const { mainViewStyle, titleStyle, allPatientsViewStyle } = styles;
 
@@ -59,16 +59,23 @@ class MainMenu extends Component {
 
 const styles = {
   mainViewStyle: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: '10%'
+    backgroundColor: '#FAFAFA',
+    padding: 12,
+    height: '100%',
   },
 
   allPatientsViewStyle: {
   },
 
   titleStyle: {
-  }
+    fontSize: 42,
+    fontFamily: "Merriweather-Black",
+    fontWeight: '900',
+    fontStyle: 'normal',
+    color: '#4E4B5C',
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
 }
 
 const mapStateToProps = (state) => {
@@ -78,4 +85,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, {} )(MainMenu);
-

@@ -61,7 +61,7 @@ class LoginForm extends Component {
     return (
       <View style = {{flex: 1, backgroundColor: '#FAFAFA',}}>
         <Logo/>
-        <Card style = {{position: 'absolute', bottom: '25%',}}>
+        <Card style = {{position: 'absolute', bottom: '25%', width: '100%'}}>
           <InputSection>
             <Input
               onChangeText={this.usernameChanged.bind(this)}

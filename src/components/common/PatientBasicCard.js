@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, Image, TouchableWithoutFeedback } from 'react-native';
 
 const PatientBasicCard = ({ name, age, image }) => {
-  const { patientView, patientImageStyle, textViewStyle } = styles;
+  const { patientView, patientImageStyle, textViewStyle, textViewContainer, textName, textAge } = styles;
 
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback style={textViewContainer}>
       <View style={patientView}>
         <View style={textViewStyle}>
-          <Text>
+          <Text style={textName}>
             {name}
           </Text>
-          <Text>{age} Years Old</Text>
+          <Text style={textAge}>{age} Years Old</Text>
         </View>
-        <Image 
+        <Image
           source={image}
           style={patientImageStyle}/>
       </View>
@@ -21,29 +21,48 @@ const PatientBasicCard = ({ name, age, image }) => {
 
   );
 };
- 
+
 const styles = {
+  textViewContainer: {
+  },
+
   patientView: {
+    height: 80,
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: '#1A8FE3',
     alignItems: 'center',
-    borderRadius: 30,
-    borderWidth: 3,
-    height: 200,
-    width: 300,
+    paddingLeft: 12,
+    paddingRight: 12,
+
   },
 
   textViewStyle: {
-    marginLeft: "5%"
+    width: '80%',
+    height: '100%',
+    justifyContent: 'center'
   },
 
   patientImageStyle: {
-    backgroundColor: 'white',
-    height: 150,
-    width: 150,    
-    marginLeft: "5%",
-    resizeMode: 'contain',
-    borderRadius: 30
-  }
+    width: 50,
+    height: 50,
+    resizeMode: 'cover',
+  },
+
+  textName: {
+    fontSize: 28,
+    fontFamily: "Merriweather-Black",
+    fontWeight: '900',
+    color: '#4E4B5C',
+  },
+  textAge: {
+    fontSize: 12,
+    fontFamily: "Merriweather-Black",
+    fontWeight: '900',
+    color: '#4E4B5C',
+  },
 }
 
 export { PatientBasicCard };

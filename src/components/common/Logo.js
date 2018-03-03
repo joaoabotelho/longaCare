@@ -19,7 +19,7 @@ const Logo = () => {
           care
         </Text>
       </Text>
-      <Text style={s.subtitle}>for the care takers</Text>
+      <Text style={s.subtitle}>welcome back, carer.</Text>
     </View>
   )
 };

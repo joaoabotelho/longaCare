@@ -15,7 +15,7 @@ const styles = {
     alignItems: 'center',
     flexDirection: 'row',
     position: 'relative',
-    marginTop: '25%',
+    marginTop: '2%',
     marginBottom: '2%',
     height: 45,
   }

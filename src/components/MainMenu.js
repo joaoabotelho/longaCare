@@ -7,8 +7,7 @@ import { connect } from 'react-redux';
 class MainMenu extends Component { 
   list = { patients: [] };
 
-  componentsWillMount(){
-    
+  renderList(){    
       fetch('https://floating-escarpment-15714.herokuapp.com/pacients', {
         method: 'GET',
         headers: {
@@ -25,20 +24,24 @@ class MainMenu extends Component {
           response.json().then(data => {
             console.log(data.data.pacients);
             this.list.patients = data.data.pacients; 
+            this.forceUpdate()
           });
         }
       });
   };
 
   renderPatients(){
-    console.log(this.list.patients);
-    return this.list.patients.map(patient => <Text>{patient.name}</Text>);
+    if(this.props.auth_token !== ''){
+      console.log(this.list.patients);
+      return this.list.patients.map(patient => <PatientBasicCard name={patient.name} age={patient.age} image={require('../assets/images/tiago.jpeg')} />);
+    }
   }
     
   render() {
     const { mainViewStyle, titleStyle, allPatientsViewStyle } = styles;
 
     console.log(this.props.auth_token);
+    this.renderList();
 
     return(
       <View style={mainViewStyle}>

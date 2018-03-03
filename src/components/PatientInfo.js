@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
-import  { PatientBasicCard, Chart } from './common';
+import  { PatientBasicCard, Chart, Report } from './common';
 
 class PatientInfo extends Component { 
   render() {
-    const { textReportStyle, reportViewStyle, mainViewStyle, headerCharStyle, graphViewStyle } = styles;
+    const { mainViewStyle, headerCharStyle, graphViewStyle } = styles;
 
    return(
       <View style={mainViewStyle}>
@@ -14,13 +14,14 @@ class PatientInfo extends Component {
           <Text style={headerCharStyle}>Body Temperature</Text>
           <Chart/>
           </View>
-          <View style={reportViewStyle}>
-            <Text style={textReportStyle}>Defecou</Text>
-            <Text style={textReportStyle}>Hora: 16:24</Text>
-            <Text style={textReportStyle}>pH: 7.2</Text>
-            <Text style={textReportStyle}>Temp: 36.2</Text>
-          </View>
-      </ScrollView>
+          <Report/>
+          <Report/>
+          <Report/>
+          <Report/>
+          <Report/>
+          <Report/>
+          <Report/>
+        </ScrollView>
       </View>
     )
   }
@@ -32,25 +33,11 @@ const styles = {
     alignItems: 'center',
     marginTop: '10%',
   },
-
-  reportViewStyle: {
-    marginTop: '5%',
-    width: '100%',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    borderWidth: 3
-  },
-
-  headerCharStyle: {
+  
+ headerCharStyle: {
     textAlign:'center',
     fontWeight: 'bold',
     marginTop: '5%'
-  },
-
-  textReportStyle: {
-    width: '50%',
-    height: '50%'
-
   },
 
   graphViewStyle: {
@@ -60,4 +47,3 @@ const styles = {
 }
 
 export default PatientInfo;
-

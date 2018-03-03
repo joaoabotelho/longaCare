@@ -8,3 +8,4 @@ export * from './LogButton';
 export * from './Logo';
 export * from './PatientBasicCard';
 export * from './Chart';
+export * from './Report';

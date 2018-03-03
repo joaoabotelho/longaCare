@@ -43,6 +43,11 @@ class LoginForm extends Component {
         />
       );
     }
+
+    if(this.props.mainMenuReady && this.props.auth_token != ''){
+      return( Actions.mainMenu());
+    }
+
     return (
       <Button onPress={this.onButtonSubmit.bind(this)} textStyle={styles.signInButtonTextStyle} buttonStyle={styles.signInButtonStyle}>
         Sign in
@@ -107,7 +112,9 @@ const mapStateToProps = state => {
     username: state.auth.username,
     password: state.auth.password,
     error: state.auth.errorFlag,
-    spinner: state.auth.spinner
+    spinner: state.auth.spinner,
+    auth_token: state.auth.auth_token,
+    mainMenuReady: state.auth.mainMenuReady
   };
 };
 

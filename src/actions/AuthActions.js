@@ -14,19 +14,12 @@ export const passwordChanged = (password) => {
   };
 };
 
-export const emailChanged = (email) => {
-  return {
-    type: 'EMAIL_CHANGED',
-    payload: email
-  };
-};
-
 export const loginUser = ({ username, password }) => {
   return (dispatch) => {
     dispatch({
       type: 'LOAD_SPINNER'
     });
-    fetch('http://localhost:3000/v1/authentications', {
+    fetch('https://floating-escarpment-15714.herokuapp.com/authentications', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -52,20 +45,19 @@ export const loginUser = ({ username, password }) => {
           dispatch({
             type: 'LOGIN_USER_SUCCESS',
             payload: data
-          });
+          })        
         });
-        Actions.mainMenu();
       }
     });
   };
 };
 
-export const createUser = ({ username, password, email }) => {
+export const createUser = ({ username, password }) => {
   return (dispatch) => {
     dispatch({
       type: 'LOAD_SPINNER'
     });
-    fetch('http://localhost:3000/v1/users', {
+    fetch('https://floating-escarpment-15714.herokuapp.com/users', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -74,7 +66,6 @@ export const createUser = ({ username, password, email }) => {
       body: JSON.stringify({
         user: {
           username,
-          email,
           password,
         }
       })
@@ -83,7 +74,7 @@ export const createUser = ({ username, password, email }) => {
         console.log('CREAT USER ERROR!!');
         response.json().then(data => {
           dispatch({
-            type: 'CREAT_USER_ERROR',
+            type: 'CREATE_USER_ERROR',
             payload: data.data.error
           });
         });
@@ -95,7 +86,7 @@ export const createUser = ({ username, password, email }) => {
             payload: data
           });
         });
-        Actions.mainMenu();
+        Actions.login();
       }
     });
   };

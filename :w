@@ -7,41 +7,35 @@ import { connect } from 'react-redux';
 class MainMenu extends Component { 
   list = { patients: [] };
 
-  renderList(){    
-      fetch('https://floating-escarpment-15714.herokuapp.com/pacients', {
+  async componentDidMount(){
+    try {
+      let response = await fetch('https://floating-escarpment-15714.herokuapp.com/pacients', {
         method: 'GET',
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Authorization': this.props.auth_token
         },
-      }).then((response) => {
-        console.log('got user info: ' + response);
-        if(response.status === 401) {
-          console.log("Erro");
-        } else {
-          console.log("Success!!");
-          response.json().then(data => {
-            console.log(data.data.pacients);
-            this.list.patients = data.data.pacients; 
-            this.forceUpdate()
-          });
-        }
       });
-  };
-
-  renderPatients(){
-    if(this.props.auth_token !== ''){
-      console.log(this.list.patients);
-      return this.list.patients.map(patient => <PatientBasicCard name={patient.name} age={patient.age} image={require('../assets/images/tiago.jpeg')} />);
+      let responseJson = await response.json();
+      if(responseJson !== null) {
+        console.log('got user info: ' + responseJson);
+        for(key in responseJson) {
+          if(responseJson.hasOwnProperty(key)) {
+            var value = responseJson[key];
+            console.log(value)
+          }
+        }
+    } catch(error) {
+      console.logo('Error in retrieving userinfo' + error.message);
     }
   }
-    
+
+
   render() {
     const { mainViewStyle, titleStyle, allPatientsViewStyle } = styles;
 
     console.log(this.props.auth_token);
-    this.renderList();
 
     return(
       <View style={mainViewStyle}>
@@ -49,7 +43,6 @@ class MainMenu extends Component {
         <ScrollView>
           <View style={allPatientsViewStyle}>
             <PatientBasicCard name={"Jose Antunes"} age={"18"} image={require('../assets/images/tiago.jpeg')} />
-            {this.renderPatients()}
           </View>
         </ScrollView>
       </View>

@@ -3,7 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import { Background, Button, Card, CardSection, InputSection, Input, LogButton } from './common';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { usernameChanged, passwordChanged, emailChanged, createUser } from '../actions';
+import { usernameChanged, passwordChanged, createUser } from '../actions';
 
 class SignupForm extends Component {
   usernameChanged(value) {
@@ -14,14 +14,10 @@ class SignupForm extends Component {
     this.props.passwordChanged(value);
   }
 
-  emailChanged(value){
-    this.props.emailChanged(value);
-  }
-
   onButtonSubmit() {
-    console.log('Submitted: ', `${this.props.username} ${this.props.password} ${this.props.email}`);
-    const { username, password, email} = this.props;
-    this.props.createUser({ username, password, email });
+    console.log('Submitted: ', `${this.props.username} ${this.props.password}`);
+    const { username, password } = this.props;
+    this.props.createUser({ username, password });
   }
 
   renderError(){
@@ -71,15 +67,6 @@ class SignupForm extends Component {
               value={this.props.username}
             />
           </InputSection>
-           <InputSection>
-            <Input
-              onChangeText={this.emailChanged.bind(this)}
-              placeholder="Email"
-              value={this.props.email}
-            />
-          </InputSection>
-
-
           <InputSection>
             <Input
               onChangeText={this.passwordChanged.bind(this)}
@@ -132,11 +119,10 @@ const mapStateToProps = state => {
   return {
     username: state.auth.username,
     password: state.auth.password,
-    email: state.auth.email,
     errorFlag: state.auth.errorFlag,
     error: state.auth.error,
     spinner: state.auth.spinner
   };
 };
 
-export default connect(mapStateToProps, { usernameChanged, passwordChanged, emailChanged, createUser } )(SignupForm);
+export default connect(mapStateToProps, { usernameChanged, passwordChanged, createUser } )(SignupForm);

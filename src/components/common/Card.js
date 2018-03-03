@@ -13,8 +13,8 @@ const styles = {
   containerStyle: {
     backgroundColor:'transparent',
     elevation: 1,
-    marginLeft: '15%',
-    marginRight: '15%',
+    paddingLeft: 24,
+    paddingRight: 24,
     marginTop: '1%',
     justifyContent: 'center',
     alignItems: 'center',

@@ -15,11 +15,11 @@ const styles = {
     padding: 5,
     justifyContent: 'flex-start',
     flexDirection: 'row',
-    borderColor: '#ffffff',
-    borderRadius: 25,
-    borderWidth: 2.5,
-    marginTop: '6%',
-    position: 'relative'
+    borderColor: '#1A8FE3',
+    borderRadius: 4,
+    borderWidth: 1,
+    marginTop: '2%',
+    position: 'relative',
   }
 }
 export { InputSection };

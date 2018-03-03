@@ -5,6 +5,8 @@ import { View, Text, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { usernameChanged, passwordChanged, loginUser } from '../actions';
 
+var s = require('../assets/style');
+
 class LoginForm extends Component {
   usernameChanged(value) {
     this.props.usernameChanged(value);
@@ -52,12 +54,9 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <View style = {{flex: 1, backgroundColor: '#eee'}}>
-        <Background
-          source={require('../assets/images/background/background1.jpg')}
-        />
+      <View style = {{flex: 1, backgroundColor: '#FAFAFA',}}>
         <Logo/>
-        <Card>
+        <Card style = {{position: 'absolute', bottom: '25%',}}>
           <InputSection>
             <Input
               onChangeText={this.usernameChanged.bind(this)}
@@ -78,7 +77,7 @@ class LoginForm extends Component {
             {this.renderButton()}
           </CardSection>
           {this.renderError()}
-          <LogButton text="Don't have and account?" buttonText="Signup" onPress={Actions.signup}/>
+          <LogButton text="Don't have an account?" buttonText=" Signup" onPress={Actions.signup}/>
         </Card>
       </View>
     );
@@ -87,19 +86,19 @@ class LoginForm extends Component {
 
 const styles = {
   signInButtonTextStyle: {
-    color: '#2489a0',
-    fontSize: 22,
-    backgroundColor: 'transparent'
+    color: '#ffffff',
+    padding: 8,
+    textAlign: 'center',
+    fontFamily: "Merriweather-Light",
   },
 
   signInButtonStyle: {
-    flex: 1,
-    alignSelf: 'stretch',
-    backgroundColor: '#fff',
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
+    backgroundColor: '#1A8FE3',
+    padding: 8,
+    width: '100%',
+    borderRadius: 4,
+    position: 'relative',
+  },
 }
 
 const mapStateToProps = state => {

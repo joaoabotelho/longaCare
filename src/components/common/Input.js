@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, TextInput, View } from 'react-native';
 
+var s = require('../../assets/style');
+
 const Input = ({ placeholder, value, onChangeText, secureTextEntry}) => {
   const { inputStyle, containerStyle } = styles;
 
@@ -10,7 +12,7 @@ const Input = ({ placeholder, value, onChangeText, secureTextEntry}) => {
         secureTextEntry={secureTextEntry}
         placeholder={placeholder}
         autoCorrect={false}
-        style={inputStyle}
+        style={inputStyle, s.merriInput}
         value={value}
         onChangeText={onChangeText}
       />
@@ -20,11 +22,10 @@ const Input = ({ placeholder, value, onChangeText, secureTextEntry}) => {
 
 const styles = {
   inputStyle: {
-    color: '#fff',
+    color: '#000000',
     paddingRight: 15,
     paddingLeft: 15,
     fontSize: 20,
-    //fontFamily: "MyriadPro-Regular",
     lineHeight: 23,
     flex: 1
   },

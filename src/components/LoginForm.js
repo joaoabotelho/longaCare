@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Actions } from 'react-native-router-flux';
-import { Background, Logo, Button, Card, CardSection, InputSection, Input, LogButton } from './common';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { Background, Logo, Button, Card, CardSection, InputSection, Input, LogButton,  } from './common';
+import { View, Text, ActivityIndicator, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { usernameChanged, passwordChanged, loginUser } from '../actions';
 
@@ -55,7 +55,7 @@ class LoginForm extends Component {
 
   render() {
     return (
-      <View style = {{flex: 1, backgroundColor: '#FAFAFA',}}>
+      <KeyboardAvoidingView behaviour="padding" style = {{flex: 1, backgroundColor: '#FAFAFA',}}>
         <Logo/>
         <Card style = {{position: 'absolute', bottom: '25%', width: '100%'}}>
           <InputSection>
@@ -80,7 +80,7 @@ class LoginForm extends Component {
           {this.renderError()}
           <LogButton text="Don't have an account?" buttonText=" Signup" onPress={Actions.signup}/>
         </Card>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

@@ -54,15 +54,12 @@ class SignupForm extends Component {
 
   render() {
     return (
-      <View style = {{flex: 1, backgroundColor: '#eee'}}>
-        <Background
-          source={require('../assets/images/background/background2.jpg')}
-        />
+      <View style = {{flex: 1, backgroundColor: '#FAFAFA',}}>
         <View style={styles.titleContainerStyle}>
           <Text style={styles.titleStyle}>New</Text>
           <Text style={styles.titleStyle}>Account</Text>
         </View>
-        <Card>
+        <Card style = {{position: 'absolute', bottom: '25%', width: '100%'}}>
           <InputSection>
             <Input
               onChangeText={this.usernameChanged.bind(this)}
@@ -82,7 +79,7 @@ class SignupForm extends Component {
             {this.renderButton()}
           </CardSection>
           {this.renderError()}
-          <LogButton text="Not the first time here?" buttonText="Log in" onPress={Actions.login}/> 
+          <LogButton text="Not your first time here?" buttonText=" Log in." onPress={Actions.login}/>
         </Card>
       </View>
    );
@@ -91,10 +88,9 @@ class SignupForm extends Component {
 
 const styles = {
   titleStyle: {
-    color: '#fff',
+    color: '#000000',
     fontSize: 30,
     backgroundColor: 'transparent',
-    fontWeight: 'bold',
   },
 
   titleContainerStyle: {
@@ -102,20 +98,20 @@ const styles = {
     marginTop: '35%',
     marginBottom: '5%'
   },
-  
+
   signInButtonTextStyle: {
-    color: '#2489a0', 
-    fontSize: 22, 
-    backgroundColor: 'transparent'
+    color: '#ffffff',
+    backgroundColor: 'transparent',
+    fontFamily: "Merriweather-Light",
   },
 
   signInButtonStyle: {
     flex: 1,
     alignSelf: 'stretch',
-    backgroundColor: '#fff',
-    borderRadius: 20,
+    backgroundColor: '#1A8FE3',
+    borderRadius: 4,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   }
 }
 

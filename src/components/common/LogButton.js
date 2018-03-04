@@ -20,21 +20,20 @@ const LogButton = ({ text, onPress, buttonText }) => {
 const styles = {
   viewStyle: {
     flexDirection: "row",
-    marginTop: '2%',
+    marginTop: '3%',
   },
 
   textStyle: {
-    fontSize: 15,
+    fontFamily: "Merriweather-Light",
   },
 
   buttonStyle: {
-    marginLeft: '1%'
   },
 
   buttonTextStyle: {
-    fontSize: 15,
-    fontWeight: 'bold',
+    fontFamily: "Merriweather-Black",
   }
+
 };
 
 export { LogButton };

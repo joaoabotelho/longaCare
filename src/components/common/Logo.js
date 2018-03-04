@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Image, Text } from 'react-native';
 
+var s = require('../../assets/style');
+
 const Logo = () => {
   const { containerStyle, imageStyle, textStyle } = styles;
 
@@ -8,35 +10,32 @@ const Logo = () => {
     <View style={containerStyle}>
       <Image
         style={imageStyle}
-        source={require('../../assets/images/logo.png')}
       />
-      <Text style={textStyle}>
-        Longa Care
+      <Text>
+        <Text style={textStyle, s.largeTitle}>
+          longa.
+        </Text>
+        <Text style={textStyle, s.smallTitle}>
+          care
+        </Text>
       </Text>
+      <Text style={s.subtitle}>welcome back, carer.</Text>
     </View>
   )
 };
 
 const styles = {
   imageStyle: {
-    height: 150,
-    width: 150
+    height: 50,
+    width: '100%'
   },
-
   containerStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '25%',
-    marginBottom: '5%'
-
+    alignItems: 'flex-start',
+    marginBottom: '5%',
+    marginLeft: '5%',
+    marginTop: '-5%',
+    borderRadius: 3,
   },
-
-  textStyle: {
-    color: '#ffffff',
-    fontSize: 35,
-    backgroundColor: 'transparent'
-
-  }
 }
 
 export { Logo };

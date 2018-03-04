@@ -4,7 +4,7 @@ import { View, Text } from 'react-native';
 const Report = () => {
   const { textReportStyle, reportViewStyle } = styles;
 
-  return ( 
+  return (
     <View style={reportViewStyle}>
       <Text style={textReportStyle}>Defecou</Text>
       <Text style={textReportStyle}>Hora: 16:24</Text>
@@ -18,8 +18,10 @@ const styles = {
 
  textReportStyle: {
     width: '50%',
-    height: '50%'
-
+    height: '50%',
+    fontSize: 12,
+    fontFamily: "Merriweather-Black",
+    fontWeight: '300',
   },
 
   reportViewStyle: {
@@ -28,8 +30,15 @@ const styles = {
     height: 75,
     flexDirection: 'row',
     flexWrap: 'wrap',
-    borderWidth: 3
-  } 
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: '#1A8FE3',
+    paddingLeft: 12,
+    paddingRight: 12,
+    paddingTop: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 }
- 
+
 export { Report };

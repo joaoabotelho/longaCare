@@ -5,6 +5,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 class MainMenu extends Component {
+
   state = { patients: [] };
 
   componentWillMount() {
@@ -40,7 +41,6 @@ class MainMenu extends Component {
     return this.state.patients.map(patient => <PatientBasicCard name={patient.name} age={patient.age} image={require('../assets/images/tiago.jpeg')} />);
   };
 
-
   render() {
     const { mainViewStyle, titleStyle, allPatientsViewStyle } = styles;
     const { auth_token } = this.props;
@@ -57,16 +57,23 @@ class MainMenu extends Component {
 
 const styles = {
   mainViewStyle: {
-    flex: 1,
-    alignItems: 'center',
-    marginTop: '10%'
+    backgroundColor: '#FAFAFA',
+    padding: 12,
+    height: '100%',
   },
 
   allPatientsViewStyle: {
   },
 
   titleStyle: {
-  }
+    fontSize: 42,
+    fontFamily: "Merriweather-Black",
+    fontWeight: '900',
+    fontStyle: 'normal',
+    color: '#4E4B5C',
+    paddingTop: 12,
+    paddingBottom: 12,
+  },
 }
 
 const mapStateToProps = (state) => {

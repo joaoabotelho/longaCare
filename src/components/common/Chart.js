@@ -18,8 +18,8 @@ const Chart = () => {
       x2={ '100%' }
       y1={ y(37.5) }
       y2={ y(37.5) }
-      stroke={ 'red' }
-      strokeWidth={ 3 }
+      stroke={ '#4E4B5C' }
+      strokeWidth={ 1 }
     />
   ))
 
@@ -41,8 +41,8 @@ const Chart = () => {
       contentInset={ { top: 20, bottom: 20} }
       extras = { [ HorizontalLine ]}
       curve={shape.curveNatural}
-      svg={{ fill: 'rgb(134, 65, 244)', strokeWidth: 2 }}
-    />     
+      svg={{ fill: '#1A8FE3', strokeWidth: 2 }}
+    />
     </View>
   );
 };

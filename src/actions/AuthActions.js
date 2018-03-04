@@ -39,7 +39,7 @@ export const loginUser = ({ username, password }) => (
             type: 'LOGIN_FAILED'
           });
         } else {
-          console.log('SUCCESS!!');
+          console.log('SUCCESS!!' + response);
           response.json()
             .then(data => {
               loginUserSuccess(dispatch, data["auth_token"])
@@ -56,7 +56,7 @@ export const loginUser = ({ username, password }) => (
 );
 
 const loginUserSuccess = (dispatch, data) => {
-  console.log(data)
+  console.log('lalala' + data)
   dispatch({
     type: 'LOGIN_USER_SUCCESS',
     payload: data,

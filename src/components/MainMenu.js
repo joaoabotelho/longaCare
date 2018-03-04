@@ -5,15 +5,16 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 class MainMenu extends Component {
-  list = { patients: [] };
+  state = { patients: [] };
 
-  fetchData() {
+  componentWillMount() {
     console.log('fetching')
     fetch('https://floating-escarpment-15714.herokuapp.com/pacients', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': this.props.auth_token
       },
     })
       .then((response) => {
@@ -25,7 +26,7 @@ class MainMenu extends Component {
           response.json().then(data => {
             console.log('data: ' )
             console.log(data.data.pacients);
-            this.list.patients = data.data.pacients;
+            this.setState({patients: data.data.pacients});
           });
         }
       })
@@ -35,12 +36,8 @@ class MainMenu extends Component {
   }
 
   list_(){
-    console.log('LIST')
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-
-    this.dataSource = ds.cloneWithRows(this.props.libraries);
+    console.log(this.state.patients);
+    return this.state.patients.map(patient => <PatientBasicCard name={patient.name} age={patient.age} image={require('../assets/images/tiago.jpeg')} />);
   };
 
 
@@ -48,20 +45,11 @@ class MainMenu extends Component {
     const { mainViewStyle, titleStyle, allPatientsViewStyle } = styles;
     const { auth_token } = this.props;
 
-    this.fetchData()
-    this.list_()
 
     return(
       <View style={mainViewStyle}>
         <Text style={titleStyle}>Patients</Text>
-        <ListView
-          dataSource={this.list.patients}
-          renderRow={(rowData) =>
-              <View style={allPatientsViewStyle}>
-                <PatientBasicCard name={rowData.name} age={rowData.age} image={require('../assets/images/tiago.jpeg')} />
-              </View>
-          }
-        />
+        {this.list_()}
       </View>
     )
   }

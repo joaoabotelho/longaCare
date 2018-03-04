@@ -44,10 +44,6 @@ class LoginForm extends Component {
       );
     }
 
-    if(this.props.mainMenuReady && this.props.auth_token != ''){
-      return( Actions.mainMenu());
-    }
-
     return (
       <Button onPress={this.onButtonSubmit.bind(this)} textStyle={styles.signInButtonTextStyle} buttonStyle={styles.signInButtonStyle}>
         Sign in

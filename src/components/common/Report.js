@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 
-const Report = () => {
-  const { textReportStyle, reportViewStyle } = styles;
+const Report = ({ action, time, ph, temp, hum }) => {
+  const { subtextReportStyle, textReportStyle, reportViewStyle } = styles;
 
   return (
     <View style={reportViewStyle}>
-      <Text style={textReportStyle}>Defecou</Text>
-      <Text style={textReportStyle}>Hora: 16:24</Text>
-      <Text style={textReportStyle}>pH: 7.2</Text>
-      <Text style={textReportStyle}>Temp: 36.2</Text>
+      <Text style={textReportStyle}>{action}</Text>
+      <Text style={textReportStyle}>Hora: {time}</Text>
+      <Text style={subtextReportStyle}>pH: {ph}</Text>
+      <Text style={subtextReportStyle}>Temp: {temp}</Text>
+      <Text style={subtextReportStyle}>Humidity: {hum}</Text>
     </View>
   );
 };
@@ -17,17 +18,26 @@ const Report = () => {
 const styles = {
 
  textReportStyle: {
-    width: '50%',
+    width: '33%',
     height: '50%',
     fontSize: 12,
     fontFamily: "Merriweather-Black",
     fontWeight: '300',
   },
 
+ subtextReportStyle: {
+    width: '33%',
+    height: '50%',
+    fontSize: 12,
+    fontFamily: "Merriweather-Black",
+    fontWeight: '300',
+  },
+
+
   reportViewStyle: {
     marginTop: '5%',
     width: '100%',
-    height: 75,
+    height: 100,
     flexDirection: 'row',
     flexWrap: 'wrap',
     borderWidth: 1,

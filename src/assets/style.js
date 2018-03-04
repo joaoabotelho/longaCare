@@ -38,7 +38,7 @@ merriInput: {
   fontStyle: 'normal',
   color: '#4E4B5C',
   textAlign: 'left',
-  padding: 8,
+  width: '100%',
+  paddingLeft: 8
 },
-
 });

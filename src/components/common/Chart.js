@@ -4,9 +4,8 @@ import { AreaChart, YAxis } from 'react-native-svg-charts';
 import * as shape from 'd3-shape';
 import { Line } from 'react-native-svg'
 
-const Chart = () => {
+const Chart = ({ data }) => {
 
-  const data = [ 37.5, 35.2, 37.2, 38.2, 39.2, 37.2, 36.2, 37.2 ]
 
   const contentInset = { top: 20, bottom: 20 }
   const {} = styles;

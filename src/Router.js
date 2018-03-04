@@ -12,7 +12,17 @@ const RouterComponent = () => {
     <Router>
       <Scene>
         <Scene initial key="login" component={LoginForm} hideNavBar/>
-        <Scene key="signup" component={SignupForm} hideNavBar/>
+        <Scene key="signup" component={SignupForm}
+          renderBackButton={() =>
+              <TouchableOpacity onPress={() => Actions.pop()}>
+                <MIIcon
+                  name="keyboard-arrow-left"
+                  size={55}
+                  color="#1A8FE3"
+                  style={{bottom: 8}}/>
+              </TouchableOpacity>
+          }
+          back/>
         <Scene key="mainMenu" component={MainMenu} hideNavBar/>
         <Scene key="patientInfo" component={PatientInfo}
           title="Patient"
@@ -21,7 +31,7 @@ const RouterComponent = () => {
                 <MIIcon
                   name="keyboard-arrow-left"
                   size={55}
-                  color="blue"
+                  color="#1A8FE3"
                   style={{bottom: 8}}/>
               </TouchableOpacity>
           }

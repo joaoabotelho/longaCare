@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, Image, TouchableWithoutFeedback } from 'react-native';
 
-const PatientBasicCard = ({ name, age, image }) => {
+const PatientBasicCard = ({ onPress, name, age, image }) => {
   const { patientView, patientImageStyle, textViewStyle, textViewContainer, textName, textAge } = styles;
 
   return (
-    <TouchableWithoutFeedback style={textViewContainer}>
+    <TouchableWithoutFeedback onPress={onPress} style={textViewContainer}>
       <View style={patientView}>
         <View style={textViewStyle}>
           <Text style={textName}>

@@ -14,8 +14,8 @@ export const passwordChanged = (password) => {
   };
 };
 
-export const loginUser = ({ username, password }) => {
-  return (dispatch) => {
+export const loginUser = ({ username, password }) => (
+  (dispatch) => {
     dispatch({
       type: 'LOAD_SPINNER'
     });
@@ -31,26 +31,39 @@ export const loginUser = ({ username, password }) => {
           password,
         }
       })
-    }).then((response) => {
-      console.log(response);
-      if (response.status === 401) {
-        console.log('AUTHENTICATION ERROR!!');
-        dispatch({
-          type: 'LOGIN_FAILED'
-        });
-      } else {
-        console.log('SUCCESS!!');
-        response.json().then(data => {
-          console.log(data);
+    })
+      .then((response) => {
+        if (response.status === 401) {
+          console.log('AUTHENTICATION ERROR!!');
           dispatch({
-            type: 'LOGIN_USER_SUCCESS',
-            payload: data
-          })        
-        });
-      }
-    });
-  };
-};
+            type: 'LOGIN_FAILED'
+          });
+        } else {
+          console.log('SUCCESS!!');
+          response.json()
+            .then(data => {
+              loginUserSuccess(dispatch, data["auth_token"])
+            })
+            .catch((error) => {
+              console.log('ERROROROR2: ' + error)
+            })
+        }
+      })
+      .catch((error) => {
+        console.log('ERROROROR3: ' + error)
+      });
+  }
+);
+
+const loginUserSuccess = (dispatch, data) => {
+  console.log(data)
+  dispatch({
+    type: 'LOGIN_USER_SUCCESS',
+    payload: data,
+  })
+  console.log('okokok')
+  Actions.mainMenu();
+}
 
 export const createUser = ({ username, password }) => {
   return (dispatch) => {

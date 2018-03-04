@@ -1,57 +1,67 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, ListView } from 'react-native';
 import  { PatientBasicCard } from './common';
 import axios from 'axios';
 import { connect } from 'react-redux';
 
-class MainMenu extends Component { 
+class MainMenu extends Component {
   list = { patients: [] };
 
-  renderList(){    
-      fetch('https://floating-escarpment-15714.herokuapp.com/pacients', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': this.props.auth_token
-        },
-      }).then((response) => {
+  fetchData() {
+    console.log('fetching')
+    fetch('https://floating-escarpment-15714.herokuapp.com/pacients', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+      .then((response) => {
         console.log('got user info: ' + response);
         if(response.status === 401) {
           console.log("Erro");
         } else {
           console.log("Success!!");
           response.json().then(data => {
+            console.log('data: ' )
             console.log(data.data.pacients);
-            this.list.patients = data.data.pacients; 
-            this.forceUpdate()
+            this.list.patients = data.data.pacients;
           });
         }
-      });
+      })
+      .catch((error) => {
+        console.log('ERORORRO: ' + error)
+      })
+  }
+
+  list_(){
+    console.log('LIST')
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+
+    this.dataSource = ds.cloneWithRows(this.props.libraries);
   };
 
-  renderPatients(){
-    if(this.props.auth_token !== ''){
-      console.log(this.list.patients);
-      return this.list.patients.map(patient => <PatientBasicCard name={patient.name} age={patient.age} image={require('../assets/images/tiago.jpeg')} />);
-    }
-  }
-    
+
   render() {
     const { mainViewStyle, titleStyle, allPatientsViewStyle } = styles;
+    const { auth_token } = this.props;
 
-    console.log(this.props.auth_token);
-    this.renderList();
+    this.fetchData()
+    this.list_()
 
     return(
       <View style={mainViewStyle}>
         <Text style={titleStyle}>Patients</Text>
-        <ScrollView>
-          <View style={allPatientsViewStyle}>
-            <PatientBasicCard name={"Jose Antunes"} age={"18"} image={require('../assets/images/tiago.jpeg')} />
-            {this.renderPatients()}
-          </View>
-        </ScrollView>
+        <ListView
+          dataSource={this.list.patients}
+          renderRow={(rowData) =>
+              <View style={allPatientsViewStyle}>
+                <PatientBasicCard name={rowData.name} age={rowData.age} image={require('../assets/images/tiago.jpeg')} />
+              </View>
+          }
+        />
       </View>
     )
   }
@@ -72,10 +82,8 @@ const styles = {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    auth_token: state.auth.auth_token,
-  }
+  console.log("state: " + state.auth.auth_token)
+  return { auth_token: state.auth.auth_token }
 }
 
 export default connect(mapStateToProps, {} )(MainMenu);
-

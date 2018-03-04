@@ -1,4 +1,4 @@
-import { 
+import {
   USERNAME_CHANGED,
   PASSWORD_CHANGED,
   LOGIN_FAILED,
@@ -8,7 +8,7 @@ import {
   CREATE_USER_SUCCESS
 } from '../actions/types';
 
-const INITIAL_STATE = { 
+const INITIAL_STATE = {
   username: '',
   password: '',
   auth_token: '',
@@ -19,6 +19,7 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+  console.log('action: ' + action.type)
   switch (action.type) {
     case 'USERNAME_CHANGED':
       return { ...state, username: action.payload };
@@ -27,7 +28,7 @@ export default (state = INITIAL_STATE, action) => {
     case 'LOGIN_FAILED':
       return { ...state, errorFlag: true, password: '', spinner: false };
     case 'LOGIN_USER_SUCCESS':
-      return { ...state, ...INITIAL_STATE, auth_token: action.payload["auth_token"], mainMenuReady: true};
+      return { ...state, ...INITIAL_STATE, auth_token: action.payload, mainMenuReady: true};
     case 'LOAD_SPINNER':
       return { ...state, spinner: true };
     case 'CREATE_USER_ERROR':

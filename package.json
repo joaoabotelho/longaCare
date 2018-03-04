@@ -13,6 +13,7 @@
     "react-native-router-flux": "^4.0.0-beta.28",
     "react-native-svg": "^6.2.2",
     "react-native-svg-charts": "^3.0.2",
+    "react-native-vector-icons": "^4.5.0",
     "react-redux": "^5.0.7",
     "react-thunk": "^1.0.0",
     "redux": "^3.7.2",
@@ -28,6 +29,8 @@
     "preset": "react-native"
   },
   "rnpm": {
-   "assets": ["src/assets/fonts/"]
+    "assets": [
+      "src/assets/fonts/"
+    ]
   }
 }
